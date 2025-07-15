@@ -7,7 +7,7 @@ export default async function Home() {
   const projects = await client.fetch('*[_type == "project"]')
   console.log(projects)
   return (
-    <div className="bg-red-500 text-white p-4 text-2xl">
+    <div className="bg-sky-50 text-white p-4 text-2xl">
         If you see a red box, Tailwind is working!
     </div>
   );
