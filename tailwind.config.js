@@ -9,19 +9,22 @@ export default {
     theme: {
       extend: {
         colors: {
-          orange: {
-            50: '#FFF3E0',
-            100: '#FFE0B2',
-            200: '#FFCC80',
-            300: '#FFB74D',
-            400: '#FFA726',
-            500: '#FB8C00',
-            600: '#F57C00',
-            700: '#EF6C00',
-            800: '#E65100',
-            900: '#FF5722',
-            950: '#BF360C',
+          grey: {
+            50: '#FFFFFF',
+            100: '#BABABB',
+            200: '#98999A',
+            300: '#696A6C',
+            400: '#4C4D4F',
+            500: '#1F2123',
+            600: '#1C1E20',
+            700: '#161719',
+            800: '#111213',
+            900: '#0D0E0F',
           },
+          tag: {
+            selected: '#DCDDDE',
+            unselected: '#F5F6F7',
+          }
         },
         fontFamily: {
             sans: ['var(--font-lexend)', 'Lexend'],
@@ -38,7 +41,7 @@ export default {
             'h6-medium': ['1.3125rem', { lineHeight: '1.2' }],
             body: ['1rem', { lineHeight: '1.2' }],        // 16px
             p02: ['0.75rem', { lineHeight: '1.2' }],      // 12px
-          }
+        }
       },
     },
     plugins: [],
