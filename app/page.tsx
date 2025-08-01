@@ -1,7 +1,6 @@
 // Home page
 
 import { client } from "@/sanity/lib/client";
-import Image from "next/image";
 
 export default async function Home() {
   const projects = await client.fetch('*[_type == "project"]')

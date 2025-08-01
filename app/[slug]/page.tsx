@@ -2,11 +2,11 @@ import { client } from '@/sanity/lib/client';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 };
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
   const project = await client.fetch(
     `*[_type == "project" && slug.current == $slug][0]`,
     { slug }
