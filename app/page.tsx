@@ -1,65 +1,100 @@
 // Home page
 
-import { client } from "@/sanity/lib/client";
-import { Layout, Hero, ProjectCard } from "./components";
+import { Layout } from "./components";
 
-export default async function Home() {
-  const projects = await client.fetch(`
-    *[_type == "project"] | order(date desc) {
-      _id,
-      title,
-      slug,
-      tagline,
-      coverImage,
-      role,
-      techStack,
-      date,
-      categories
-    }
-  `);
-
+export default function Home() {
   return (
     <Layout>
-      <Hero />
-      
-      {/* Featured Projects Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 font-heading">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-body">
-              Here are some of my recent projects that showcase my skills and passion for development.
-            </p>
+      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Bio Section */}
+        <div className="mb-8">
+          <h1 className="text-h5 font-light text-gray-900 mb-4 font-heading">
+            Stephanie Stelzer
+          </h1>
+          
+          <p className="text-p text-grey-300 font-light leading-relaxed mb-8">
+            Hi! I'm Stephanie, a hybrid software developer / designer. I am passionate about combining art and technology to craft immersive and meaningful experiences and enjoy learning from different perspectives across creative and technical fields. Currently building creative tools for the web at Disney, previously at Paramount Animation as a Pipeline Developer.
+          </p>
+          
+          <div className="flex justify-end gap-6">
+            <a 
+              href="/projects" 
+              className="text-gray-700 hover:text-gray-900 transition-colors font-light flex items-center gap-1"
+            >
+              Portfolio
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-gray-900 transition-colors font-light flex items-center gap-1"
+            >
+              LinkedIn
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </div>
-          
-          {projects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.slice(0, 6).map((project: any) => (
-                <ProjectCard key={project._id} project={project} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg font-body">
-                No projects found. Add some projects in your Sanity Studio to see them here!
-              </p>
-            </div>
-          )}
-          
-          {projects.length > 6 && (
-            <div className="text-center mt-12">
-              <a
-                href="/projects"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
-              >
-                View All Projects
-              </a>
-            </div>
-          )}
         </div>
-      </section>
+        
+        {/* History Section */}
+        <div className="mt-8">
+          <hr className="border-gray-300 mb-8" />
+          <h2 className="text-p text-grey-500 mb-2 font-light">
+            HISTORY
+          </h2>
+          
+                     <div className="">
+             <div className="flex items-center justify-between py-1">
+               <div className="flex items-center gap-1">
+                 <div className="w-4 h-4 border border-black rounded bg-gray-200"></div>
+                 <span className="text-p text-grey-500 font-light">
+                   The Walt Disney Company
+                 </span>
+               </div>
+               <span className="text-p text-grey-500 font-light">
+                 2024 -
+               </span>
+             </div>
+             <div className="flex items-center justify-between py-1">
+               <div className="flex items-center gap-1">
+                 <div className="w-4 h-4 border border-black rounded bg-gray-200"></div>
+                 <span className="text-p text-grey-500 font-light">
+                   Paramount Animation
+                 </span>
+               </div>
+               <span className="text-p text-grey-500 font-light">
+                 2023
+               </span>
+             </div>
+             <div className="flex items-center justify-between py-1">
+               <div className="flex items-center gap-1">
+                 <div className="w-4 h-4 border border-black rounded bg-gray-200"></div>
+                 <span className="text-p text-grey-500 font-light">
+                   Target
+                 </span>
+               </div>
+               <span className="text-p text-grey-500 font-light">
+                 2022
+               </span>
+             </div>
+             <div className="flex items-center justify-between py-1">
+               <div className="flex items-center gap-1">
+                 <div className="w-4 h-4 border border-black rounded bg-gray-200"></div>
+                 <span className="text-p text-grey-500 font-light">
+                   The Agency at UF
+                 </span>
+               </div>
+               <span className="text-p text-grey-500 font-light">
+                 2022 - 2023
+               </span>
+             </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

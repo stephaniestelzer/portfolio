@@ -7,11 +7,11 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white sticky top-0 z-50">
+    <header className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <h6 className="text-h6 text-grey-900 font-light">
+          <h6 className="text-p text-grey-900 font-light">
             Stephanie Stelzer
           </h6>
 
