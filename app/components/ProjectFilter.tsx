@@ -19,7 +19,7 @@ interface ProjectFilterProps {
 }
 
 export default function ProjectFilter({ projects }: ProjectFilterProps) {
-  const [selectedTag, setSelectedTag] = useState<string>('tools');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   // Get all unique tags from projects
   const getAllTags = (projects: Project[]) => {
@@ -32,16 +32,26 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
     return Array.from(tags).sort();
   };
 
-  // Filter projects based on selected tag
-  const filterProjects = (projects: Project[], tag: string) => {
-    if (tag === 'all') return projects;
-    return projects.filter(project => 
-      project.tags && project.tags.includes(tag)
+  // Filter projects based on selected tags
+  const filterProjects = (projects: Project[], tags: string[]) => {
+    if (tags.length === 0) return projects;
+    return projects.filter(project =>
+      project.tags && tags.every(tag => project.tags!.includes(tag))
     );
   };
 
   const allTags = getAllTags(projects);
-  const filteredProjects = filterProjects(projects, selectedTag);
+  const filteredProjects = filterProjects(projects, selectedTags);
+
+  // Toggle tag selection
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev =>
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
+
+  // Clear all selected tags
+  const clearTags = () => setSelectedTags([]);
 
   return (
     <>
@@ -50,22 +60,12 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
         <div className="flex items-center gap-4 mb-4">
           <h2 className="text-lg font-light text-gray-900">Tags</h2>
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedTag('all')}
-              className={`px-4 py-2 rounded-full text-sm font-light transition-colors ${
-                selectedTag === 'all'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              All
-            </button>
             {allTags.map((tag) => (
               <button
                 key={tag}
-                onClick={() => setSelectedTag(tag)}
+                onClick={() => toggleTag(tag)}
                 className={`px-4 py-2 rounded-full text-sm font-light transition-colors ${
-                  selectedTag === tag
+                  selectedTags.includes(tag)
                     ? 'bg-gray-900 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
@@ -87,10 +87,9 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
       ) : (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">
-            {selectedTag === 'all' 
+            {selectedTags.length === 0
               ? 'No projects found. Check back soon for updates!'
-              : `No projects found in the "${selectedTag}" category.`
-            }
+              : `No projects found with the selected tag${selectedTags.length > 1 ? 's' : ''}.`}
           </p>
         </div>
       )}
