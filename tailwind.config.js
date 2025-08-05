@@ -21,6 +21,9 @@ export default {
             800: '#111213',
             900: '#0D0E0F',
           },
+          blue: {
+            600: '#4C76D6',
+          },
           tag: {
             selected: '#DCDDDE',
             unselected: '#F5F6F7',
