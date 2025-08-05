@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "View Stephanie Stelzer's portfolio of creative projects combining art and technology.",
+  description: "View Stephanie Stelzer's portfolio",
 };
 
 // Define the project type based on your schema
@@ -47,10 +47,10 @@ export default async function ProjectsPage() {
         </div>
       </Layout>
       <div className="py-8 text-center bg-tag-unselected">
-          <p className="text-grey-400 font-light text-p">
-            © 2025 Stephanie Stelzer
-          </p>
-        </div>
+        <p className="text-grey-400 font-light text-p">
+          © 2025 Stephanie Stelzer
+        </p>
+      </div>
     </>
   );
 }; 
