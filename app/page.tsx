@@ -1,6 +1,10 @@
 // Home page
+import { Metadata } from "next";
 
-import { Layout } from "./components";
+export const metadata: Metadata = {
+  title: "Stephanie Stelzer",
+  description: "Stephanie Stelzer - Software developer passionate about art, technology, and tooling.",
+};
 
 export default function Home() {
   return (
@@ -10,11 +14,11 @@ export default function Home() {
         {/* Bio Section */}
         <div className="mb-8">
           <h1 className="text-h5 font-light text-gray-900 mb-4 font-heading">
-            Stephanie Stelzer
+            Hi there! I'm Stephanie
           </h1>
           
           <p className="text-p text-grey-300 font-light mb-8">
-            Hi! I'm Stephanie, a hybrid software developer / designer. I am passionate about combining art and technology to craft immersive and meaningful experiences. Currently building creative tools for the web at Disney, previously at Paramount Animation as a Pipeline Developer.
+            I am a software developer passionate about art, technology, and tooling. Currently building content publishing tools for the web at Disney, previously at Paramount Animation as a Pipeline Developer.
           </p>
           
           <div className="flex justify-start md:justify-end gap-6">

@@ -2,6 +2,12 @@ import { client } from '@/sanity/lib/client';
 import { Layout } from '../components';
 import { Header } from '../components';
 import ProjectFilter from '../components/ProjectFilter';
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description: "View Stephanie Stelzer's portfolio of creative projects combining art and technology.",
+};
 
 // Define the project type based on your schema
 interface Project {
