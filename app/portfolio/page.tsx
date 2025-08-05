@@ -37,12 +37,7 @@ export default async function ProjectsPage() {
       <Header />
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="mb-12">
-            <h1 className="text-h3 font-light text-gray-900 mb-4 font-heading">
-              Projects
-            </h1>
-          </div>
-          {/* Projects with Filter */}
+        {/* Projects with Filter */}
         <ProjectFilter projects={projects} />
         </div>
       </Layout>
