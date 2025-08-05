@@ -58,16 +58,16 @@ export default function ProjectFilter({ projects }: ProjectFilterProps) {
       {/* Tags Section */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <h2 className="text-lg font-light text-gray-900">Tags</h2>
+          <h2 className="text-lg font-regular text-grey-900">Tags</h2>
           <div className="flex flex-wrap gap-2">
             {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-4 py-2 rounded-full text-sm font-light transition-colors ${
+                className={`px-2 py-1 rounded-lg text-sm font-light transition-colors ${
                   selectedTags.includes(tag)
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-tag-selected border border-grey-900'
+                    : 'bg-tag-unselected text-gray-700 border border-grey-900 hover:bg-gray-200'
                 }`}
               >
                 {tag}
