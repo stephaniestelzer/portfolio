@@ -1,5 +1,6 @@
 import { client } from '@/sanity/lib/client';
 import { Layout } from '../components';
+import { Header } from '../components';
 import ProjectFilter from '../components/ProjectFilter';
 
 // Define the project type based on your schema
@@ -32,25 +33,24 @@ export default async function ProjectsPage() {
   const projects: Project[] = await client.fetch(projectsQuery);
 
   return (
-    <Layout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-h3 font-light text-gray-900 mb-4 font-heading">
-            Projects
-          </h1>
-        </div>
-
-        {/* Projects with Filter */}
+    <>
+      <Header />
+      <Layout>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="mb-12">
+            <h1 className="text-h3 font-light text-gray-900 mb-4 font-heading">
+              Projects
+            </h1>
+          </div>
+          {/* Projects with Filter */}
         <ProjectFilter projects={projects} />
-
-        {/* Footer */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-500 text-sm">
+        </div>
+      </Layout>
+      <div className="py-8 text-center bg-tag-unselected">
+          <p className="text-grey-400 font-light text-p">
             © 2025 Stephanie Stelzer
           </p>
         </div>
-      </div>
-    </Layout>
+    </>
   );
-} 
+}; 

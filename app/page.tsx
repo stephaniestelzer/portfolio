@@ -4,7 +4,8 @@ import { Layout } from "./components";
 
 export default function Home() {
   return (
-    <Layout>
+    <div className="min-h-screen bg-white flex items-center">
+      <main className="flex-1">
       <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Bio Section */}
         <div className="mb-8">
@@ -18,7 +19,7 @@ export default function Home() {
           
           <div className="flex justify-start md:justify-end gap-6">
             <a 
-              href="/projects" 
+              href="/portfolio" 
               className="text-gray-700 hover:text-gray-900 transition-colors font-light flex items-center gap-1"
             >
               Portfolio
@@ -27,7 +28,7 @@ export default function Home() {
               </svg>
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/stephanie-stelzeruf/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-gray-900 transition-colors font-light flex items-center gap-1"
@@ -47,7 +48,7 @@ export default function Home() {
             HISTORY
           </h2>
           
-                     <div className="">
+          <div className="">
              <div className="flex items-center justify-between py-1">
                <div className="flex items-center gap-1">
                  <div className="w-4 h-4 border border-black rounded bg-blue-600"></div>
@@ -95,6 +96,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </Layout>
+      </main>
+    </div>
   );
 }
