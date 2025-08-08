@@ -11,9 +11,9 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <h6 className="text-p text-grey-900 font-light">
+          <Link href="/" className="text-p text-grey-900 font-light">
             Stephanie Stelzer
-          </h6>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10">
@@ -47,13 +47,6 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
-              <Link
-                href="/"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
               <Link
                 href="/about"
                 className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
