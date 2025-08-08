@@ -3,10 +3,29 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { Header } from '../components';
 import { Layout } from '../components';
+import { PortableText } from '@portabletext/react';
+import { type PortableTextBlock } from "next-sanity";
+import { urlFor } from '@/sanity/lib/image';
 
 type Props = {
   params: Promise<{ slug: string }>
 };
+
+// Define the project type based on your schema
+interface Project {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  subtitle?: string;
+  coverImage?: any;
+  links?: Array<{
+    _key: string;
+    title: string;
+    url: string;
+  }>;
+  tags?: string[];
+  body?: PortableTextBlock[];
+}
 
 // Generate metadata for the page
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -30,12 +49,61 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = await client.fetch(
+  const project: Project = await client.fetch(
     `*[_type == "project" && slug.current == $slug][0]`,
     { slug }
   );
 
   if (!project) return notFound();
+
+  // Custom components for PortableText
+  const components = {
+    types: {
+      image: ({value}: any) => {
+        return (
+          <div className="my-8">
+            <img
+              src={urlFor(value).url()}
+              alt={value.alt || 'Project image'}
+              className="w-full h-auto rounded-lg"
+            />
+            {value.caption && (
+              <p className="text-sm text-gray-600 mt-2 text-center">{value.caption}</p>
+            )}
+          </div>
+        );
+      },
+    },
+    block: {
+      h1: ({children}: any) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8">{children}</h1>,
+      h2: ({children}: any) => <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-6">{children}</h2>,
+      h3: ({children}: any) => <h3 className="text-xl font-bold text-gray-900 mb-3 mt-5">{children}</h3>,
+      normal: ({children}: any) => <p className="text-gray-700 leading-relaxed mb-4">{children}</p>,
+    },
+    list: {
+      bullet: ({children}: any) => <ul className="list-disc list-inside mb-6 text-gray-700 space-y-2">{children}</ul>,
+      number: ({children}: any) => <ol className="list-decimal list-inside mb-6 text-gray-700 space-y-2">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({children}: any) => <li className="mb-1">{children}</li>,
+      number: ({children}: any) => <li className="mb-1">{children}</li>,
+    },
+    marks: {
+      link: ({children, value}: any) => {
+        const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
+        return (
+          <a
+            href={value?.href}
+            target={target}
+            rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
+  };
 
   return (
     <>
@@ -97,6 +165,15 @@ export default async function ProjectPage({ params }: Props) {
               </div>
             ) : null}
           </div>
+          {/* Body Content */}
+              {project.body && (
+                <div className="prose prose-lg max-w-none mt-8">
+                  <PortableText 
+                    value={project.body}
+                    components={components}
+                  />
+                </div>
+              )}
         </div>
       </Layout>
     </>

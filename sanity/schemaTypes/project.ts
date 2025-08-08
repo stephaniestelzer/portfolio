@@ -68,7 +68,27 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        { type: 'block' },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Important for SEO and accessibility'
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Optional caption for the image'
+            }
+          ]
+        }
+      ],
       description: 'Detailed breakdown of the project: problem, process, decisions, outcome.'
     })
   ]
