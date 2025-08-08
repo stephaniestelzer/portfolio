@@ -67,29 +67,8 @@ export default defineType({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'array',
-      of: [
-        { type: 'block' },
-        {
-          type: 'image',
-          options: { hotspot: true },
-          fields: [
-            {
-              name: 'alt',
-              title: 'Alt Text',
-              type: 'string',
-              description: 'Important for SEO and accessibility'
-            },
-            {
-              name: 'caption',
-              title: 'Caption',
-              type: 'string',
-              description: 'Optional caption for the image'
-            }
-          ]
-        }
-      ],
-      description: 'Detailed breakdown of the project: problem, process, decisions, outcome.'
+      type: 'blockContent',
+      description: 'Detailed breakdown of the project: problem, process, decisions, outcome. You can now add rich content including videos, embeds, and more.'
     })
   ]
 })

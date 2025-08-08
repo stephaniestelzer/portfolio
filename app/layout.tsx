@@ -26,6 +26,7 @@ export default function RootLayout({
         className={`${lexend.variable} antialiased`}
       >
         {children}
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
       </body>
     </html>
   );
