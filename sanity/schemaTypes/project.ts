@@ -19,8 +19,8 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'tagline',
-      title: 'Short Tagline',
+      name: 'subtitle',
+      title: 'Subtitle',
       type: 'string',
       description: 'One-liner describing the project’s purpose or impact.'
     }),
@@ -31,45 +31,33 @@ export default defineType({
       options: { hotspot: true }
     }),
     defineField({
-      name: 'media',
-      title: 'Gallery / Demo Media',
+      name: 'links',
+      title: 'Project Links',
       type: 'array',
-      of: [{ type: 'image' }, { type: 'file' }],
-      description: 'Images or video demos (e.g., MP4, GIF)'
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Link Title',
+              type: 'string',
+              validation: Rule => Rule.required()
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: Rule => Rule.required()
+            }
+          ]
+        }
+      ],
+      description: 'Add links related to the project, such as GitHub, Live Demo, etc.'
     }),
     defineField({
-      name: 'role',
-      title: 'My Role',
-      type: 'string',
-      description: 'e.g. Design, Engineering, Creative Direction'
-    }),
-    defineField({
-      name: 'techStack',
-      title: 'Technologies Used',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
-    }),
-    defineField({
-      name: 'githubUrl',
-      title: 'GitHub Link',
-      type: 'url'
-    }),
-    defineField({
-      name: 'liveDemoUrl',
-      title: 'Live Demo URL',
-      type: 'url'
-    }),
-    defineField({
-      name: 'date',
-      title: 'Project Date',
-      type: 'date'
-    }),
-    defineField({
-      name: 'categories',
-      title: 'Tags / Categories',
+      name: 'tags',
+      title: 'Tags',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
@@ -77,11 +65,10 @@ export default defineType({
       }
     }),
     defineField({
-      name: 'caseStudy',
-      title: 'Case Study',
-      type: 'array',
-      of: [{ type: 'block' }],
-      description: 'Detailed breakdown of the project: problem, process, decisions, outcome.'
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
+      description: 'Detailed breakdown of the project: problem, process, decisions, outcome. You can now add rich content including videos, embeds, and more.'
     })
   ]
 })
