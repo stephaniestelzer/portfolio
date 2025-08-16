@@ -1,22 +1,31 @@
-import { Layout } from '../components';
-import { Header } from '../components';
+// app/3d-art/page.tsx
+"use client";
 
-export default async function Art() {
-    return (
-        <>
-      <Header />
-      <Layout>
-        <div className="min-h-screen pt-8">
-          <div className="flex mt-8 mb-8 flex-col justify-center lg:flex-row">
-            In the process of moving this work from a previous portfolio. Coming soon.
-          </div>
-        </div>
-      </Layout>
-      <div className="py-8 text-center bg-tag-unselected">
-        <p className="text-grey-400 font-light text-p">
-          © 2025 Stephanie Stelzer
-        </p>
-      </div>
-    </>
-    )
+import { ProductFeatureSplit, AccordionGallery, ComparisonCard } from "../components/GalleryListComponents";
+
+export default function ThreeDArtPage() {
+  // Example images (place them in /public)
+  const images = ["/img1.jpg", "/img2.jpg", "/img3.jpg"];
+  const features = ["Fast performance", "Responsive design", "Easy integration"];
+
+  const accordionItems = [
+    { title: "Step 1", image: "/step1.jpg", description: "Do this first" },
+    { title: "Step 2", image: "/step2.jpg", description: "Then this" },
+    { title: "Step 3", image: "/step3.jpg", description: "Finally that" },
+  ];
+
+  const pros = ["Easy to use", "Customizable"];
+  const cons = ["Limited free tier"];
+
+  return (
+    <div className="space-y-12 p-6">
+      <h1 className="text-3xl font-bold text-center">3D Art Gallery</h1>
+
+      <ProductFeatureSplit images={images} features={features} />
+
+      <AccordionGallery items={accordionItems} />
+
+      <ComparisonCard title="Product X" images={images} pros={pros} cons={cons} />
+    </div>
+  );
 }
