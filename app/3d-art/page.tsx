@@ -6,7 +6,7 @@ export default async function Art() {
         <>
       <Header />
       <Layout>
-        <div className="min-h-screen pt-8">
+        <div className="min-h-screen pt-8 px-6">
           <div className="flex mt-8 mb-8 flex-col justify-center lg:flex-row">
             In the process of moving this work from a previous portfolio. Coming soon.
           </div>

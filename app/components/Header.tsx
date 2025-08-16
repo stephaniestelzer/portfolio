@@ -11,7 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="text-p text-grey-900 font-light">
+          <Link href="/" className="text-p text-grey-900 font-light px-4">
             Stephanie Stelzer
           </Link>
 
@@ -48,25 +48,25 @@ export default function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
               <Link
+                href="/portfolio"
+                className="block px-3 py-2 text-p text-grey-400 hover:text-gray-900 font-light"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Portfolio
+              </Link>
+              <Link
                 href="/about"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                className="block px-3 py-2 text-p text-grey-400 hover:text-gray-900 font-light"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
-                href="/projects"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-colors"
+                href="/notebook"
+                className="block px-3 py-2 text-p text-grey-400 hover:text-gray-900 font-light"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Projects
-              </Link>
-              <Link
-                href="/contact"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
+                Notebook
               </Link>
             </div>
           </div>
