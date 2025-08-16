@@ -124,6 +124,11 @@ export default async function ProjectPage({ params }: Props) {
               )}
         </div>
       </Layout>
+      <div className="py-8 text-center bg-tag-unselected">
+        <p className="text-grey-400 font-light text-p">
+          © 2025 Stephanie Stelzer
+        </p>
+      </div>
     </>
   );
 }
