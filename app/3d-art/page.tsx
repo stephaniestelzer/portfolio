@@ -12,31 +12,28 @@ export default function ThreeDArtPage() {
     {
       id: "1",
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: "/3D/Stelzer_Stephanie_Render_01.png",
       alt: "3D Abstract Sculpture",
       caption: "Fluid Dynamics",
-      category: "Sculpture",
-      width: 800,
+      width: 1000,
       height: 600
     },
     {
       id: "2",
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      src: "/3D/Stelzer_Stephanie_Render_02.png",
       alt: "Digital Architecture",
       caption: "Urban Geometry",
-      category: "Architecture",
-      width: 600,
+      width: 800,
       height: 800
     },
     {
       id: "3",
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      src: "/3D/Stelzer_Stephanie_Render_03.png",
       alt: "3D Character Design",
       caption: "Digital Portraits",
-      category: "Character",
-      width: 400,
+      width: 800,
       height: 600
     },
     {
@@ -45,7 +42,6 @@ export default function ThreeDArtPage() {
       src: "https://vimeo.com/859190931?share=copy",
       alt: "Terrarium",
       caption: "",
-      category: "Motion",
       width: 600,
       height: 600,
       videoId: "859190931",

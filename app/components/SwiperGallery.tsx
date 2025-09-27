@@ -99,19 +99,6 @@ export default function SwiperGallery({
   return (
     <div className="relative w-full bg-gray-100 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Debug button - remove this later */}
-        <button 
-          onClick={() => {
-            const firstImage = items.find(item => item.type === 'image');
-            if (firstImage) {
-              setLightboxItem(firstImage);
-              setLightboxOpen(true);
-            }
-          }}
-          className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Test Lightbox
-        </button>
         <Swiper
           modules={[Navigation, Keyboard]}
           spaceBetween={24}
@@ -158,7 +145,7 @@ export default function SwiperGallery({
                 <div className="relative group cursor-pointer flex flex-col items-center" style={{height: `${maxHeight}px`}}>
                   {/* Media Container */}
                   <div 
-                    className="relative overflow-hidden rounded-lg bg-white shadow-sm border border-gray-200 w-full flex flex-col items-center"
+                    className="relative overflow-hidden w-full flex flex-col items-center"
                     style={{
                       width: `${finalWidth}px`,
                       height: 'auto', // let content dictate height
@@ -189,21 +176,14 @@ export default function SwiperGallery({
                         allowFullScreen
                       />
                     )}
-                    
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                    
-                    {/* Caption */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="text-white">
-                        <h3 className="text-sm font-semibold mt-1 line-clamp-2">
-                          {item.caption}
-                        </h3>
-                      </div>
+                  </div>
+                  {/* Caption */}
+                  <div className="w-full flex-col items-start">
+                    <div className="text-black">
+                      <h3 className="text-sm font-semibold mt-1 line-clamp-2">
+                        {item.caption}
+                      </h3>
                     </div>
-
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 rounded-lg transition-colors duration-300" />
                   </div>
                 </div>
               </SwiperSlide>
