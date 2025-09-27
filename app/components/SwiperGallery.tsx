@@ -97,7 +97,7 @@ export default function SwiperGallery({
   console.log('Lightbox state:', { lightboxOpen, lightboxItem });
 
   return (
-    <div className="relative w-full bg-gray-100 py-12 overflow-hidden">
+    <div className="relative w-fullpy-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <Swiper
           modules={[Navigation, Keyboard]}

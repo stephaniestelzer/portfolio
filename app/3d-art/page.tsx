@@ -69,9 +69,55 @@ export default function ThreeDArtPage() {
             </div>
           </div>
         </div>
+        <div className="bg-grey-400 three-d-section">
+          <div className="flex justify-center pt-7">
+            <h4 className="text-white underline">Modeling</h4>
+          </div>
+          {/* Callout Section */}
+          <div className="flex justify-center py-8">
+            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+              <h2 className="text-h5 font-regular text-center mb-6">Terrarium</h2>
+              <p className="text-p font-light text-gray-800 mb-4">
+                The prompt for this project was to create a "Floating World" that could be held in one’s hand. I immediately thought of the decorative terrariums commonly placed on desks. For my project, I imagined that a whole different world existed within one of these small glass jars. My terrarium would be the home of a dedicated gardener who took great joy in his craft.
+              </p>
+              <p className="text-p font-light text-gray-800 mb-4">
+                The world is designed to be "in-progress," showcasing the gardener’s work before its completion. The shed is open, tools lay awry, and the plants aren’t fully embedded in the soil, creating an atmosphere of continuous progress. The winding path and bench provide a place for the gardener to sit and appreciate his environment. The hole in the center of the jar invites viewers into the world and to join the gardener in his work.
+              </p>
+              <p className="text-p font-light text-gray-800">
+                Throughout the development of this project, I learned about parametric modeling, world-building, and using deformers in Cinema4D.
+              </p>
+            </div>
+          </div>
           <SwiperGallery 
             items={galleryItems}
           />
+        </div>
+        <div className="bg-tag-unselected three-d-section">
+          <div className="flex justify-center pt-7">
+            <h4 className="text-black underline">Animation</h4>
+          </div>
+          {/* Callout Section */}
+          <div className="flex justify-center py-8">
+            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+              <h2 className="text-h5 font-regular text-center mb-6">Parkour Animation</h2>
+              <p className="text-p font-light text-gray-800 mb-4">
+                The goal of this exercise was to learn the fundamentals of body mechanics and to practice switching between IK and FK.
+              </p>
+              <p className="font-semibold">Learnings</p>
+              <ul className="list-disc pl-6 text-p font-light text-gray-800">
+                <li>
+                  The fundamentals of the bouncing ball exercise and principle of squash and stretch are important to creating realistic motion. These principles create buoyancy and keep the character's movement from appearing floaty and weightless.
+                </li>
+                <li>
+                  Rushing into Maya will hurt the quality of your animation. Be sure to carefully plan out your IK and FK switches.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <SwiperGallery 
+            items={galleryItems}
+          />
+        </div>
       </Layout>
     </>
   );
