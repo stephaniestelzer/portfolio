@@ -118,6 +118,76 @@ export default function ThreeDArtPage() {
             items={galleryItems}
           />
         </div>
+        <div className="bg-grey-400 three-d-section">
+          <div className="flex justify-center pt-7">
+            <h4 className="text-white underline">Technical Art</h4>
+          </div>
+          {/* OpenGL Robot */}
+          <div className="flex justify-center py-8">
+            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+              <h2 className="text-h5 font-regular text-center mb-6">OpenGL Robot</h2>
+              <p className="text-p font-light text-gray-800 mb-4">
+                A program that creates the arm of a robot and allows the user to use arrow keys to move it around in space.
+              </p>
+              <p>Throughout development, I learned about...</p>
+              <ul className="list-disc pl-6 text-p font-light text-gray-800">
+                <li>
+                  Vertex Buffer/Array Objects
+                </li>
+                <li>
+                  Hierarchy Set-up
+                </li>
+                <li>
+                  Transformation Matrices
+                </li>
+                <li>
+                  Transformation Matrices
+                </li>
+                <li>
+                  Shaders (GLSL) / OpenGL Lighting Model
+                </li>
+              </ul>
+            </div>
+          </div>
+          <SwiperGallery 
+            items={galleryItems}
+          />
+          {/* Rigging Study */}
+          <div className="flex justify-center py-8">
+            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+              <h2 className="text-h5 font-regular text-center mb-6">Rigging Study</h2>
+              <p className="text-p font-light text-gray-800 mb-4">
+                After taking Advanced 3D Animation, I wanted to learn more about creating rigs. I worked with my 3D Animation instructor to learn the fundamentals of rigging characters for CG animation.
+              </p>
+              <p className="font-semibold">Topics Covered:</p>
+              <ul className="list-disc pl-6 text-p font-light text-gray-800">
+                <li>
+                  Model/Mesh Cleaning
+                </li>
+                <li>
+                 Auto Rigging Systems
+                </li>
+                <li>
+                  Joint Placement
+                </li>
+                <li>
+                  Weight-Painting
+                </li>
+                <li>
+                  Blend Shapes
+                </li>
+              </ul>
+            </div>
+          </div>
+          <SwiperGallery 
+            items={galleryItems}
+          />
+        </div>
+        <div className="py-8 text-center bg-tag-unselected">
+          <p className="text-grey-400 font-light text-p">
+            © 2025 Stephanie Stelzer
+          </p>
+        </div>
       </Layout>
     </>
   );
