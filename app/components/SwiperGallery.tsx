@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -12,12 +12,13 @@ interface GalleryItem {
   src: string;
   alt: string;
   caption?: string;
-  category?: string;
   width?: number;
   height?: number;
   // Video specific properties
   videoId?: string; // For YouTube/Vimeo IDs
   platform?: 'youtube' | 'vimeo';
+  srcSet?: string; // Responsive images
+  sizes?: string;  // Responsive images
 }
 
 interface SwiperGalleryProps {
@@ -50,6 +51,16 @@ export default function SwiperGallery({
 }: SwiperGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
+
+  // Calculate the tallest image height (in px, based on a base width)
+  const baseWidth = 400; // px, matches max slide width
+  const maxHeight = items.reduce((max, item) => {
+    if (item.type === 'image' && item.width && item.height) {
+      const h = baseWidth / (item.width / item.height);
+      return Math.max(max, h);
+    }
+    return max;
+  }, 280); // fallback to 280px if no dimensions
 
   const openLightbox = (item: GalleryItem) => {
     console.log('Opening lightbox for item:', item);
@@ -86,7 +97,7 @@ export default function SwiperGallery({
   console.log('Lightbox state:', { lightboxOpen, lightboxItem });
 
   return (
-    <div className="relative w-full bg-gray-100 py-12">
+    <div className="relative w-full bg-gray-100 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Debug button - remove this later */}
         <button 
@@ -102,7 +113,7 @@ export default function SwiperGallery({
           Test Lightbox
         </button>
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Keyboard]}
           spaceBetween={24}
           slidesPerView="auto"
           centeredSlides={false}
@@ -112,6 +123,7 @@ export default function SwiperGallery({
             nextEl: '.swiper-button-next-custom',
             prevEl: '.swiper-button-prev-custom',
           }}
+          keyboard={{ enabled: true, onlyInViewport: true }}
           breakpoints={{
             320: {
               spaceBetween: 16,
@@ -128,8 +140,7 @@ export default function SwiperGallery({
           {items.map((item) => {
             // Calculate dimensions based on aspect ratio or provided dimensions
             const aspectRatio = item.width && item.height ? item.width / item.height : 1;
-            const baseHeight = 280;
-            const calculatedWidth = Math.round(baseHeight * aspectRatio);
+            const calculatedWidth = Math.round(maxHeight * aspectRatio);
             const finalWidth = Math.max(200, Math.min(400, calculatedWidth)); // Min 200px, max 400px
             
             // Handle video embeds
@@ -144,20 +155,23 @@ export default function SwiperGallery({
             
             return (
               <SwiperSlide key={item.id} className="!w-auto">
-                <div className="relative group cursor-pointer">
+                <div className="relative group cursor-pointer flex flex-col items-center" style={{height: `${maxHeight}px`}}>
                   {/* Media Container */}
                   <div 
-                    className="relative overflow-hidden rounded-lg bg-white shadow-sm border border-gray-200"
+                    className="relative overflow-hidden rounded-lg bg-white shadow-sm border border-gray-200 w-full flex flex-col items-center"
                     style={{
                       width: `${finalWidth}px`,
-                      height: `${baseHeight}px`
+                      height: 'auto', // let content dictate height
+                      alignItems: 'flex-start',
                     }}
                   >
                     {item.type === 'image' ? (
                       <img
                         src={item.src}
+                        srcSet={item.srcSet}
+                        sizes={item.sizes}
                         alt={item.alt}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+                        className="w-full h-auto max-h-[70vh] object-contain mt-0 self-start transition-transform duration-300 group-hover:scale-105 cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
@@ -168,7 +182,8 @@ export default function SwiperGallery({
                       <iframe
                         src={embedUrl}
                         title={item.alt}
-                        className="w-full h-full"
+                        className="w-full h-auto max-h-[70vh] mt-0 self-start"
+                        style={{ aspectRatio: aspectRatio }}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -179,13 +194,8 @@ export default function SwiperGallery({
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                     
                     {/* Caption */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
                       <div className="text-white">
-                        {item.category && (
-                          <span className="text-xs font-medium text-gray-300 uppercase tracking-wide">
-                            {item.category}
-                          </span>
-                        )}
                         <h3 className="text-sm font-semibold mt-1 line-clamp-2">
                           {item.caption}
                         </h3>
@@ -244,19 +254,16 @@ export default function SwiperGallery({
             <div className="relative">
               <img
                 src={lightboxItem?.src || ''}
+                srcSet={lightboxItem?.srcSet}
+                sizes={lightboxItem?.sizes}
                 alt={lightboxItem?.alt || ''}
                 className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
               
               {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
+              <div className="absolute bottom-0 left-0 right-0 p-6 ">
                 <div className="text-white">
-                  {lightboxItem?.category && (
-                    <span className="text-sm font-medium text-gray-300 uppercase tracking-wide">
-                      {lightboxItem.category}
-                    </span>
-                  )}
                   <h3 className="text-xl font-semibold mt-2">
                     {lightboxItem?.caption}
                   </h3>
@@ -271,6 +278,7 @@ export default function SwiperGallery({
         .swiper-gallery {
           padding: 0 80px;
           overflow: visible;
+          transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         
         .swiper-gallery .swiper-wrapper {
