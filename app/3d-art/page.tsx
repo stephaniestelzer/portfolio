@@ -7,34 +7,33 @@ import { Header,Layout } from '../components';
 
 export default function ThreeDArtPage() {
 
-  // Gallery items with varying dimensions (images and videos)
-  const galleryItems = [
+  const terrariumItems = [
     {
       id: "1",
       type: "image" as const,
-      src: "/3D/Stelzer_Stephanie_Render_01.png",
+      src: "/terrarium/Stelzer_Stephanie_Render_01.png",
       alt: "3D Abstract Sculpture",
       caption: "Fluid Dynamics",
-      width: 1000,
-      height: 600
+      width: 1200,
+      height: 1000
     },
     {
       id: "2",
       type: "image" as const,
-      src: "/3D/Stelzer_Stephanie_Render_02.png",
+      src: "/terrarium/Stelzer_Stephanie_Render_02.png",
       alt: "Digital Architecture",
       caption: "Urban Geometry",
-      width: 800,
-      height: 800
+      width: 1200,
+      height: 1000
     },
     {
       id: "3",
       type: "image" as const,
-      src: "/3D/Stelzer_Stephanie_Render_03.png",
+      src: "/terrarium/Stelzer_Stephanie_Render_03.png",
       alt: "3D Character Design",
       caption: "Digital Portraits",
-      width: 800,
-      height: 600
+      width: 1200,
+      height: 1000
     },
     {
       id: "4",
@@ -42,17 +41,86 @@ export default function ThreeDArtPage() {
       src: "https://vimeo.com/859190931?share=copy",
       alt: "Terrarium",
       caption: "",
-      width: 600,
-      height: 600,
+      width: 1200,
+      height: 1000,
       videoId: "859190931",
+      platform: "vimeo" as const
+    },
+  ];
+
+  const animationItems = [
+    {
+      id: "1",
+      type: "image" as const,
+      src: "https://stephaniestelzer.github.io/MyPortfolio/assets/A3PlanningDoc-501183ff.png",
+      alt: "Planning Sheet",
+      caption: "Planning Sheet",
+      width: 1200,
+      height: 1000
+    },
+    {
+      id: "2",
+      type: "video" as const,
+      src: "https://stephaniestelzer.github.io/MyPortfolio/assets/Stelzer_Stephanie_A4_Ref-248e6c07.mp4",
+      alt: "reference",
+      platform: "mp4" as const,
+      caption: "Reference",
+      poster: ""
+    },
+    {
+      id: "3",
+      type: "video" as const,
+      src: "https://vimeo.com/828404878?share=copy",
+      alt: "Final Blocking",
+      caption: "Final Blocking Pass",
+      width: 1200,
+      height: 1000,
+      videoId: "828404878",
+      platform: "vimeo" as const
+    },
+  ];
+
+  const glRobotItems = [
+    {
+      id: "1",
+      type: "video" as const,
+      src: "https://vimeo.com/828446023?share=copy",
+      alt: "Terrarium",
+      caption: "",
+      width: 1200,
+      height: 1000,
+      videoId: "828446023",
+      platform: "vimeo" as const
+    },
+  ];
+
+  const riggingItems = [
+    {
+      id: "1",
+      type: "video" as const,
+      src: "https://vimeo.com/899996339?share=copy",
+      alt: "Oven Rig",
+      caption: "Oven Rig",
+      width: 1200,
+      height: 1000,
+      videoId: "899996339",
+      platform: "vimeo" as const
+    },
+    {
+      id: "2",
+      type: "video" as const,
+      src: "https://vimeo.com/899997320?share=copy",
+      alt: "Blendshapes",
+      caption: "Blendshapes",
+      width: 1200,
+      height: 1000,
+      videoId: "899997320",
       platform: "vimeo" as const
     },
   ];
 
   return (
     <>
-
-      {/* Rest of the content */}
       <Header />
       <Layout>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +157,7 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           <SwiperGallery 
-            items={galleryItems}
+            items={terrariumItems}
           />
         </div>
         <div className="bg-tag-unselected three-d-section">
@@ -115,7 +183,7 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           <SwiperGallery 
-            items={galleryItems}
+            items={animationItems}
           />
         </div>
         <div className="bg-grey-400 three-d-section">
@@ -150,7 +218,7 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           <SwiperGallery 
-            items={galleryItems}
+            items={glRobotItems}
           />
           {/* Rigging Study */}
           <div className="flex justify-center py-8">
@@ -180,7 +248,7 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           <SwiperGallery 
-            items={galleryItems}
+            items={riggingItems}
           />
         </div>
         <div className="py-8 text-center bg-tag-unselected">

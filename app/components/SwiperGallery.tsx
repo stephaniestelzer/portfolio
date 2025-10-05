@@ -16,9 +16,10 @@ interface GalleryItem {
   height?: number;
   // Video specific properties
   videoId?: string; // For YouTube/Vimeo IDs
-  platform?: 'youtube' | 'vimeo';
+  platform?: 'youtube' | 'vimeo' | 'mp4'; // Added 'mp4' for direct video support
   srcSet?: string; // Responsive images
   sizes?: string;  // Responsive images
+  poster?: string; // Optional poster for mp4 videos
 }
 
 interface SwiperGalleryProps {
@@ -128,7 +129,7 @@ export default function SwiperGallery({
             // Calculate dimensions based on aspect ratio or provided dimensions
             const aspectRatio = item.width && item.height ? item.width / item.height : 1;
             const calculatedWidth = Math.round(maxHeight * aspectRatio);
-            const finalWidth = Math.max(200, Math.min(400, calculatedWidth)); // Min 200px, max 400px
+            const finalWidth = Math.max(200, Math.min(1200, calculatedWidth)); // Min 200px, max 400px
             
             // Handle video embeds
             let embedUrl = '';
@@ -165,6 +166,17 @@ export default function SwiperGallery({
                           openLightbox(item);
                         }}
                       />
+                    ) : item.platform === 'mp4' ? (
+                      <video
+                        src={item.src}
+                        controls
+                        muted
+                        className="w-full h-auto max-h-[70vh] mt-0 self-start"
+                        style={{ aspectRatio: aspectRatio }}
+                        poster={item.poster}
+                      >
+                        Your browser does not support the video tag.
+                      </video>
                     ) : (
                       <iframe
                         src={embedUrl}
@@ -256,7 +268,6 @@ export default function SwiperGallery({
 
       <style jsx global>{`
         .swiper-gallery {
-          padding: 0 80px;
           overflow: visible;
           transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
         }
@@ -267,6 +278,7 @@ export default function SwiperGallery({
         
         .swiper-gallery .swiper-slide {
           width: auto !important;
+          margin-top: 90px; 
         }
         
         .swiper-button-prev-custom.swiper-button-disabled,
