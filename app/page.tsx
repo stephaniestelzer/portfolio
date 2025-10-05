@@ -14,7 +14,7 @@ export default function Home() {
         {/* Bio Section */}
         <div className="mb-8">
           <h1 className="text-h5 font-light text-gray-900 mb-4 font-heading">
-            Hi there! I'm Stephanie
+            Stephanie Stelzer
           </h1>
           
           <p className="text-p text-grey-300 font-light mb-8">
