@@ -95,8 +95,6 @@ export default function SwiperGallery({
     };
   }, [lightboxOpen]);
 
-  console.log('Lightbox state:', { lightboxOpen, lightboxItem });
-
   return (
     <div className="relative w-fullpy-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -106,7 +104,7 @@ export default function SwiperGallery({
           slidesPerView="auto"
           centeredSlides={false}
           grabCursor={true}
-          loop={true}
+          loop={items.length > 2}
           navigation={{
             nextEl: '.swiper-button-next-custom',
             prevEl: '.swiper-button-prev-custom',
@@ -192,7 +190,7 @@ export default function SwiperGallery({
                   {/* Caption */}
                   <div className="w-full flex-col items-start">
                     <div className="text-black">
-                      <h3 className="text-sm font-semibold mt-1 line-clamp-2">
+                      <h3 className="text-md font-light mt-1 line-clamp-2">
                         {item.caption}
                       </h3>
                     </div>
