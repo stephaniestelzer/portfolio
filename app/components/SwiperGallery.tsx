@@ -203,14 +203,14 @@ export default function SwiperGallery({
 
         {/* Custom Navigation Buttons */}
         <div className="absolute top-6 right-6 z-10 flex space-x-2">
-          <div className="swiper-button-prev-custom p-3 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white shadow-lg transition-all duration-200 cursor-pointer">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <div className="swiper-button-prev-custom p-3 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-black shadow-lg transition-all duration-200 cursor-pointer">
+            <svg className='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M5 12L11 6M5 12L11 18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <div className="swiper-button-next-custom p-3 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white shadow-lg transition-all duration-200 cursor-pointer">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <div className="swiper-button-next-custom p-3 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-black transition-all duration-200 cursor-pointer">
+            <svg className='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         </div>
