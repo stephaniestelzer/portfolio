@@ -218,10 +218,10 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           {/* Gallery-style video display for GL Robot */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 pb-8">
             <div className="flex flex-col items-center">
               <iframe src="https://player.vimeo.com/video/828446023" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="OpenGL Robot"></iframe>
-              <span className="mt-2 text-p font-light text-gray-800">OpenGL Robot</span>
+              <span className="text-p pt-2 font-light text-white">OpenGL Robot</span>
             </div>
           </div>
           {/* Rigging Study */}
@@ -255,11 +255,11 @@ export default function ThreeDArtPage() {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
             <div className="flex flex-col items-center">
               <iframe src="https://player.vimeo.com/video/899996339" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Oven Rig"></iframe>
-              <span className="mt-2 text-p font-light text-gray-800">Oven Rig</span>
+              <span className="text-p font-light text-white">Oven Rig</span>
             </div>
             <div className="flex flex-col items-center">
               <iframe src="https://player.vimeo.com/video/899997320" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Blendshapes"></iframe>
-              <span className="mt-2 text-p font-light text-gray-800">Blendshapes</span>
+              <span className="text-p font-light text-white">Blendshapes</span>
             </div>
           </div>
         </div>
