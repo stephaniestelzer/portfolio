@@ -55,7 +55,7 @@ export default function Home() {
           <div className="">
              <div className="flex items-center justify-between py-1">
                <div className="flex items-center gap-1">
-                 <div className="w-[14px] h-[14px] border border-black rounded bg-blue-600 mr-2"></div>
+                 <div className="w-[14px] h-[14px] border border-black rounded bg-blue-300 mr-2"></div>
                  <span className="text-p text-grey-500 font-light">
                    The Walt Disney Company
                  </span>
@@ -66,7 +66,7 @@ export default function Home() {
              </div>
              <div className="flex items-center justify-between py-1">
                <div className="flex items-center gap-1">
-                 <div className="w-[14px] h-[14px] border border-black rounded bg-blue-600 mr-2"></div>
+                 <div className="w-[14px] h-[14px] border border-black rounded bg-green-300 mr-2"></div>
                  <span className="text-p text-grey-500 font-light">
                    Paramount Animation
                  </span>
@@ -77,7 +77,7 @@ export default function Home() {
              </div>
              <div className="flex items-center justify-between py-1">
                <div className="flex items-center gap-1">
-                 <div className="w-[14px] h-[14px] border border-black rounded bg-blue-600 mr-2"></div>
+                 <div className="w-[14px] h-[14px] border border-black rounded bg-pink-300 mr-2"></div>
                  <span className="text-p text-grey-500 font-light">
                    Target
                  </span>
@@ -88,7 +88,7 @@ export default function Home() {
              </div>
              <div className="flex items-center justify-between py-1">
                <div className="flex items-center gap-1">
-                 <div className="w-[14px] h-[14px] border border-black rounded bg-blue-600 mr-2"></div>
+                 <div className="w-[14px] h-[14px] border border-black rounded bg-yellow-300 mr-2"></div>
                  <span className="text-p text-grey-500 font-light">
                    The Agency at UF
                  </span>
