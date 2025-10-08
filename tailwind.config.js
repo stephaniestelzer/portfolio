@@ -22,7 +22,17 @@ export default {
             900: '#0D0E0F',
           },
           blue: {
+            300: '#8cabf2',
             600: '#4C76D6',
+          },
+          green: {
+            300: '#76c58b'
+          },
+          orange: {
+            300: '#fe9d9d'
+          },
+          yellow: {
+            300: '#fcd258'
           },
           tag: {
             selected: '#DCDDDE',
