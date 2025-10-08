@@ -12,8 +12,8 @@ export default function ThreeDArtPage() {
       id: "1",
       type: "image" as const,
       src: "/terrarium/Stelzer_Stephanie_Render_01.png",
-      alt: "3D Abstract Sculpture",
-      caption: "Fluid Dynamics",
+      alt: "3D Rendering",
+      caption: "",
       width: 1200,
       height: 1000
     },
@@ -21,8 +21,8 @@ export default function ThreeDArtPage() {
       id: "2",
       type: "image" as const,
       src: "/terrarium/Stelzer_Stephanie_Render_02.png",
-      alt: "Digital Architecture",
-      caption: "Urban Geometry",
+      alt: "3D Rendering",
+      caption: "",
       width: 1200,
       height: 1000
     },
@@ -30,8 +30,8 @@ export default function ThreeDArtPage() {
       id: "3",
       type: "image" as const,
       src: "/terrarium/Stelzer_Stephanie_Render_03.png",
-      alt: "3D Character Design",
-      caption: "Digital Portraits",
+      alt: "3D Rendering",
+      caption: "",
       width: 1200,
       height: 1000
     },
