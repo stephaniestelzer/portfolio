@@ -20,15 +20,6 @@ export default function ThreeDArtPage() {
     {
       id: "2",
       type: "image" as const,
-      src: "/terrarium/Stelzer_Stephanie_Render_02.png",
-      alt: "3D Rendering",
-      caption: "",
-      width: 1200,
-      height: 1000
-    },
-    {
-      id: "3",
-      type: "image" as const,
       src: "/terrarium/Stelzer_Stephanie_Render_03.png",
       alt: "3D Rendering",
       caption: "",
@@ -36,7 +27,7 @@ export default function ThreeDArtPage() {
       height: 1000
     },
     {
-      id: "4",
+      id: "3",
       type: "video" as const,
       src: "https://vimeo.com/859190931?share=copy",
       alt: "Terrarium",
@@ -72,7 +63,7 @@ export default function ThreeDArtPage() {
       type: "video" as const,
       src: "https://vimeo.com/828404878?share=copy",
       alt: "Final Blocking",
-      caption: "Final Blocking Pass",
+      caption: "",
       width: 1200,
       height: 1000,
       videoId: "828404878",
@@ -156,9 +147,36 @@ export default function ThreeDArtPage() {
               </p>
             </div>
           </div>
-          <SwiperGallery 
-            items={terrariumItems}
-          />
+          {/* Terrarium Gallery - stack sooner on smaller screens */}
+          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
+            {terrariumItems.map(item => (
+              <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
+                {item.type === 'image' ? (
+                  <img 
+                    src={item.src} 
+                    alt={item.alt} 
+                    width={item.width} 
+                    height={item.height} 
+                    className="w-full h-auto" 
+                    style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                  />
+                ) : item.platform === 'vimeo' ? (
+                  <div className="w-full flex flex-col items-center">
+                    <iframe 
+                      src={`https://player.vimeo.com/video/${item.videoId}`} 
+                      width="100%" 
+                      height="320" 
+                      allow="autoplay; fullscreen; picture-in-picture" 
+                      allowFullScreen 
+                      title={item.alt} 
+                      style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
+                    ></iframe>
+                    {item.caption && <span className="text-p pt-2 font-light text-gray-800 text-center w-full" style={{ marginTop: '-40px' }}>{item.caption}</span>}
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="bg-tag-unselected three-d-section">
           <div className="flex justify-center pt-7">
@@ -182,9 +200,47 @@ export default function ThreeDArtPage() {
               </ul>
             </div>
           </div>
-          <SwiperGallery 
-            items={animationItems}
-          />
+          {/* Animation Gallery - stack sooner on smaller screens */}
+          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
+            {animationItems.map(item => (
+              <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
+                <div className="w-full flex flex-col items-center">
+                  {item.type === 'image' ? (
+                    <img 
+                      src={item.src} 
+                      alt={item.alt} 
+                      width={item.width} 
+                      height={item.height} 
+                      className="w-full h-auto" 
+                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                    />
+                  ) : item.platform === 'mp4' ? (
+                    <video 
+                      src={item.src} 
+                      controls 
+                      poster={item.poster} 
+                      muted
+                      className="w-full h-auto" 
+                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                    />
+                  ) : item.platform === 'vimeo' ? (
+                    <div className="w-full flex flex-col items-center">
+                      <iframe 
+                        src={`https://player.vimeo.com/video/${item.videoId}`} 
+                        width="100%" 
+                        height="320" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowFullScreen 
+                        title={item.alt} 
+                        style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
+                      ></iframe>
+                    </div>
+                  ) : null}
+                </div>
+                {item.caption && <span className="text-p pt-2 font-light text-gray-800 text-center w-full">{item.caption}</span>}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="bg-grey-400 three-d-section">
           <div className="flex justify-center pt-7">
@@ -252,7 +308,7 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           {/* Gallery-style video display outside card */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 pb-8">
             <div className="flex flex-col items-center">
               <iframe src="https://player.vimeo.com/video/899996339" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Oven Rig"></iframe>
               <span className="text-p font-light text-white">Oven Rig</span>
