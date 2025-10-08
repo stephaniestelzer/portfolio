@@ -85,10 +85,10 @@ export default function ThreeDArtPage() {
       id: "1",
       type: "video" as const,
       src: "https://vimeo.com/828446023?share=copy",
-      alt: "Terrarium",
+      alt: "OpenGL Robot",
       caption: "",
-      width: 1200,
-      height: 1000,
+      width: 1920,
+      height: 1080,
       videoId: "828446023",
       platform: "vimeo" as const
     },
@@ -217,9 +217,13 @@ export default function ThreeDArtPage() {
               </ul>
             </div>
           </div>
-          <SwiperGallery 
-            items={glRobotItems}
-          />
+          {/* Gallery-style video display for GL Robot */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
+            <div className="flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/828446023" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="OpenGL Robot"></iframe>
+              <span className="mt-2 text-p font-light text-gray-800">OpenGL Robot</span>
+            </div>
+          </div>
           {/* Rigging Study */}
           <div className="flex justify-center py-8">
             <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
@@ -247,9 +251,17 @@ export default function ThreeDArtPage() {
               </ul>
             </div>
           </div>
-          <SwiperGallery 
-            items={riggingItems}
-          />
+          {/* Gallery-style video display outside card */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
+            <div className="flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/899996339" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Oven Rig"></iframe>
+              <span className="mt-2 text-p font-light text-gray-800">Oven Rig</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/899997320" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Blendshapes"></iframe>
+              <span className="mt-2 text-p font-light text-gray-800">Blendshapes</span>
+            </div>
+          </div>
         </div>
         <div className="py-8 text-center bg-tag-unselected">
           <p className="text-grey-400 font-light text-p">
