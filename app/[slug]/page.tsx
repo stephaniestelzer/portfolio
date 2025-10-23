@@ -31,7 +31,7 @@ interface Project {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await client.fetch(
-    `*[_type == "project" && slug.current == $slug][0]`,
+      `*[_type == "project"] | order(order asc)`,
     { slug }
   );
 

@@ -1,7 +1,11 @@
+'use client'
+
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import { getImageDimensions } from '@sanity/asset-utils'
+import { projectId, dataset } from '@/sanity/env'
+import React, { useRef, useEffect } from 'react'
 
 interface BlockContentProps {
   value: any
@@ -34,16 +38,45 @@ const components = {
       )
     },
     video: ({ value }: { value: any }) => {
-      const videoUrl = value.asset?.url
+      const fileAsset = value?.asset || value
+      let videoUrl = fileAsset?.url || fileAsset?.asset?.url || null
+      if (!videoUrl && (fileAsset?._ref || fileAsset?._id)) {
+        const ref = fileAsset._ref || fileAsset._id
+        videoUrl = getSanityFileUrl(ref)
+      }
       if (!videoUrl) return null
-      
+
+      const videoRef = useRef<HTMLVideoElement>(null)
+
+      useEffect(() => {
+        const video = videoRef.current
+        if (!video) return
+        // Pause initially
+        video.pause()
+        const observer = new window.IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {})
+            } else {
+              video.pause()
+            }
+          },
+          { threshold: 0.5 }
+        )
+        observer.observe(video)
+        return () => observer.disconnect()
+      }, [])
+
       return (
         <div className="my-8" style={{ maxWidth: `${(value.width || 1) * 100}%`, margin: '0 auto' }}>
           <div className={`relative ${value.hasBorder ? 'border border-gray-300 rounded-lg p-4' : ''}`}>
             <video
+              ref={videoRef}
               src={videoUrl}
-              controls={value.showControls}
+              controls
               className="w-full rounded-lg"
+              playsInline
+              muted
             />
             {value.caption && (
               <p className="text-sm text-gray-600 mt-2 text-center italic">
@@ -235,6 +268,27 @@ function extractInstagramId(url: string) {
   return match ? match[1] : null
 }
 
+// Helper to build a Sanity CDN URL for file assets when only an _ref/_id is provided
+function getSanityFileUrl(refOrId: string | undefined | null) {
+  if (!refOrId || typeof refOrId !== 'string') return null
+
+  // Expected format: "file-<assetId>-<ext>"
+  if (!refOrId.startsWith('file-')) {
+    // If an id was provided without the file- prefix, try to use it directly
+    // but we can't determine the extension — return null
+    return null
+  }
+
+  const rest = refOrId.replace(/^file-/, '')
+  const lastDash = rest.lastIndexOf('-')
+  if (lastDash === -1) return null
+
+  const id = rest.slice(0, lastDash)
+  const ext = rest.slice(lastDash + 1)
+
+  return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${ext}`
+}
+
 export default function BlockContent({ value }: BlockContentProps) {
   return <PortableText value={value} components={components} />
-} 
+}

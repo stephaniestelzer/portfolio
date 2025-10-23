@@ -65,6 +65,12 @@ export default defineType({
       }
     }),
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Set the order for this project. Lower numbers appear first.'
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
