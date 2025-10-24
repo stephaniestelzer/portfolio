@@ -27,26 +27,6 @@ interface Project {
   body?: PortableTextBlock[];
 }
 
-// Generate metadata for the page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const project = await client.fetch(
-      `*[_type == "project"] | order(order asc)`,
-    { slug }
-  );
-
-  if (!project) {
-    return {
-      title: 'Project Not Found',
-    };
-  }
-
-  return {
-    title: project.title,
-    description: project.subtitle || project.description || `View ${project.title} - a project by Stephanie Stelzer`,
-  };
-}
-
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project: Project = await client.fetch(

@@ -20,7 +20,7 @@ export default async function About() {
 
                   <section className="prose">
                     <p className="text-p text-gray-600">
-                      I am a Creative Technologist at Disney Experiences, where I design and build content publishing tools for <a href='https://disneyparksblog.com/' target="_blank">disneyparksblog.com</a>, <a href='https://disneyexperiences.com/' target="_blank">disneyexperiences.com,</a> and many other sites across the company. 
+                      I am a UX Developer at Disney Experiences, where I design and build content publishing tools for <a href='https://disneyparksblog.com/' target="_blank">disneyparksblog.com</a>, <a href='https://disneyexperiences.com/' target="_blank">disneyexperiences.com,</a> and many other sites across the company. 
                     </p>
                   </section>
 
