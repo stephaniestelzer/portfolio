@@ -26,7 +26,7 @@ export default async function About() {
 
                   <section className="prose">
                     <p className="text-p text-gray-600">
-                      I am a recent graduate of the University of Florida, where I earned my Bachelor of Science in <a href='https://catalog.ufl.edu/UGRD/colleges-schools/UGENG/DAS_BSDA/'  target="_blank">Digital Arts and Sciences Engineering</a>. My degree is a core computer science curriculum, with a special emphasis on human-computer interaction and digital media.
+                      I am a recent graduate of the <span className='text-orange-600'>University of Florida</span>, where I earned my Bachelor of Science in <a href='https://catalog.ufl.edu/UGRD/colleges-schools/UGENG/DAS_BSDA/'  target="_blank">Digital Arts and Sciences Engineering</a>. My degree is a core computer science curriculum, with a special emphasis on human-computer interaction and digital media.
                     </p>
                   </section>
 
@@ -36,13 +36,13 @@ export default async function About() {
                     </p>
                     <ul className="space-y-4">
                       <li className="text-p text-gray-600 leading-relaxed">
-                        <span className="font-semibold text-black">Technical Director Intern</span> at <a href='https://animation.paramountpictures.com/' target="_blank">Paramount Animation</a>, where I built tools for the studio's animation pipeline
+                        <span className="font-semibold text-black">🎨 Technical Director Intern</span> at <a href='https://animation.paramountpictures.com/' target="_blank">Paramount Animation</a>, where I built tools for the studio's animation pipeline
                       </li>
                       <li className="text-p text-gray-600 leading-relaxed">
-                        <span className="font-semibold text-black">Developer Department Manager</span> at <a href="https://theagency.jou.ufl.edu/" target="_blank">The Agency at UF</a>, where I led a team of developers and bridged the gaps between creative and technical departments
+                        <span className="font-semibold text-black">💻 Developer Department Manager</span> at <a href="https://theagency.jou.ufl.edu/" target="_blank">The Agency at UF</a>, where I led a team of developers and bridged the gaps between creative and technical departments
                       </li>
                       <li className="text-p text-gray-600 leading-relaxed">
-                        <span className="font-semibold text-black">Software Engineering Intern</span> at <a href="https://corporate.target.com/careers/career-areas/corporate/target-tech" target="_blank">Target</a>, where I built an API for Android devices
+                        <span className="font-semibold text-black">🎯 Software Engineering Intern</span> at <a href="https://corporate.target.com/careers/career-areas/corporate/target-tech" target="_blank">Target</a>, where I built an API for Android devices
                       </li>
                     </ul>
                   </section>
