@@ -1,12 +1,12 @@
 // app/3d-art/page.tsx
 "use client";
 
+import React, { useState } from "react";
 import { SwiperGallery } from "../components";
 import { Header,Layout } from '../components';
 
 
 export default function ThreeDArtPage() {
-
   const terrariumItems = [
     {
       id: "1",
@@ -110,8 +110,32 @@ export default function ThreeDArtPage() {
     },
   ];
 
+  const [lightboxImage, setLightboxImage] = useState<null | { src: string; alt: string }> (null);
+
   return (
     <>
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onClick={() => setLightboxImage(null)}>
+          <img
+            src={lightboxImage.src}
+            alt={lightboxImage.alt}
+            className="md:max-w-2xl h-auto rounded-lg shadow-lg"
+            style={{ background: '#f8fafc' }}
+            onClick={e => e.stopPropagation()}
+          />
+          <button
+            className="absolute top-4 right-4 bg-white rounded-full w-10 h-10 flex items-center justify-center"
+            onClick={e => { e.stopPropagation(); setLightboxImage(null); }}
+            aria-label="Close"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      )}
       <Header />
       <Layout>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,120 +150,6 @@ export default function ThreeDArtPage() {
                 </h6>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="bg-grey-400 three-d-section">
-          <div className="flex justify-center pt-7">
-            <h4 className="text-white underline">Modeling</h4>
-          </div>
-          {/* Callout Section */}
-          <div className="flex justify-center py-8">
-            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
-              <h2 className="text-h5 font-regular text-center mb-6">Terrarium</h2>
-              <p className="text-p font-light text-gray-800 mb-4">
-                The prompt for this project was to create a "Floating World" that could be held in one’s hand. I immediately thought of the decorative terrariums commonly placed on desks. For my project, I imagined that a whole different world existed within one of these small glass jars. My terrarium would be the home of a dedicated gardener who took great joy in his craft.
-              </p>
-              <p className="text-p font-light text-gray-800 mb-4">
-                The world is designed to be "in-progress," showcasing the gardener’s work before its completion. The shed is open, tools lay awry, and the plants aren’t fully embedded in the soil, creating an atmosphere of continuous progress. The winding path and bench provide a place for the gardener to sit and appreciate his environment. The hole in the center of the jar invites viewers into the world and to join the gardener in his work.
-              </p>
-              <p className="text-p font-light text-gray-800">
-                Throughout the development of this project, I learned about parametric modeling, world-building, and using deformers in Cinema4D.
-              </p>
-            </div>
-          </div>
-          {/* Terrarium Gallery - stack sooner on smaller screens */}
-          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
-            {terrariumItems.map(item => (
-              <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
-                {item.type === 'image' ? (
-                  <img 
-                    src={item.src} 
-                    alt={item.alt} 
-                    width={item.width} 
-                    height={item.height} 
-                    className="w-full h-auto" 
-                    style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
-                  />
-                ) : item.platform === 'vimeo' ? (
-                  <div className="w-full flex flex-col items-center">
-                    <iframe 
-                      src={`https://player.vimeo.com/video/${item.videoId}`} 
-                      width="100%" 
-                      height="320" 
-                      allow="autoplay; fullscreen; picture-in-picture" 
-                      allowFullScreen 
-                      title={item.alt} 
-                      style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
-                    ></iframe>
-                    {item.caption && <span className="text-p pt-2 font-light text-gray-800 text-center w-full" style={{ marginTop: '-40px' }}>{item.caption}</span>}
-                  </div>
-                ) : null}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="bg-tag-unselected three-d-section">
-          <div className="flex justify-center pt-7">
-            <h4 className="text-black underline">Animation</h4>
-          </div>
-          {/* Callout Section */}
-          <div className="flex justify-center py-8">
-            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
-              <h2 className="text-h5 font-regular text-center mb-6">Parkour Animation</h2>
-              <p className="text-p font-light text-gray-800 mb-4">
-                The goal of this exercise was to learn the fundamentals of body mechanics and to practice switching between IK and FK.
-              </p>
-              <p className="font-semibold">Learnings</p>
-              <ul className="list-disc pl-6 text-p font-light text-gray-800">
-                <li>
-                  The fundamentals of the bouncing ball exercise and principle of squash and stretch are important to creating realistic motion. These principles create buoyancy and keep the character's movement from appearing floaty and weightless.
-                </li>
-                <li>
-                  Rushing into Maya will hurt the quality of your animation. Be sure to carefully plan out your IK and FK switches.
-                </li>
-              </ul>
-            </div>
-          </div>
-          {/* Animation Gallery - stack sooner on smaller screens */}
-          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
-            {animationItems.map(item => (
-              <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
-                <div className="w-full flex flex-col items-center">
-                  {item.type === 'image' ? (
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      width={item.width} 
-                      height={item.height} 
-                      className="w-full h-auto" 
-                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
-                    />
-                  ) : item.platform === 'mp4' ? (
-                    <video 
-                      src={item.src} 
-                      controls 
-                      poster={item.poster} 
-                      muted
-                      className="w-full h-auto" 
-                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
-                    />
-                  ) : item.platform === 'vimeo' ? (
-                    <div className="w-full flex flex-col items-center">
-                      <iframe 
-                        src={`https://player.vimeo.com/video/${item.videoId}`} 
-                        width="100%" 
-                        height="320" 
-                        allow="autoplay; fullscreen; picture-in-picture" 
-                        allowFullScreen 
-                        title={item.alt} 
-                        style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
-                      ></iframe>
-                    </div>
-                  ) : null}
-                </div>
-                {item.caption && <span className="text-p pt-2 font-light text-gray-800 text-center w-full">{item.caption}</span>}
-              </div>
-            ))}
           </div>
         </div>
         <div className="bg-grey-400 three-d-section">
@@ -275,8 +185,14 @@ export default function ThreeDArtPage() {
           </div>
           {/* Gallery-style video display for GL Robot */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-8 pb-8">
-            <div className="flex flex-col items-center">
-              <iframe src="https://player.vimeo.com/video/828446023" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="OpenGL Robot"></iframe>
+            <div className="w-full flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/828446023" 
+                width="100%" 
+                height="320" 
+                frameBorder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                title="OpenGL Robot" 
+              />
               <span className="text-p pt-2 font-light text-white">OpenGL Robot</span>
             </div>
           </div>
@@ -308,15 +224,134 @@ export default function ThreeDArtPage() {
             </div>
           </div>
           {/* Gallery-style video display outside card */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-8 pb-8">
-            <div className="flex flex-col items-center">
-              <iframe src="https://player.vimeo.com/video/899996339" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Oven Rig"></iframe>
-              <span className="text-p font-light text-white">Oven Rig</span>
+          <div className="flex flex-col items-center w-full xs:w-auto">
+            <div className="w-full flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/899996339" 
+                width="100%" 
+                height="320" 
+                frameBorder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowFullScreen  
+              />
+              <span className="text-p font-light text-white pt-2 pb-8">Oven Rig</span>
             </div>
-            <div className="flex flex-col items-center">
-              <iframe src="https://player.vimeo.com/video/899997320" width="480" height="270" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Blendshapes"></iframe>
-              <span className="text-p font-light text-white">Blendshapes</span>
+            <div className="w-full flex flex-col items-center">
+              <iframe src="https://player.vimeo.com/video/899997320" 
+                width="100%" 
+                height="320" 
+                frameBorder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowFullScreen 
+                title="Blendshapes"
+              />
+              <span className="text-p font-light text-white pt-2 pb-8">Blendshapes</span>
             </div>
+          </div>
+        </div>
+        <div className="bg-tag-unselected three-d-section">
+          <div className="flex justify-center pt-7">
+            <h4 className="text-black underline">Modeling</h4>
+          </div>
+          <div className="flex justify-center py-8">
+              <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+                <h2 className="text-h5 font-regular text-center mb-6">Terrarium</h2>
+                <p className="text-p font-light text-gray-800 mb-4">
+                  The prompt for this project was to create a "Floating World" that could be held in one’s hand. I immediately thought of the decorative terrariums commonly placed on desks. For my project, I imagined that a different world existed within one of these small glass jars. My terrarium would be the home of a dedicated gardener who took great joy in his craft.
+                </p>
+            </div>
+          </div>
+          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
+              {terrariumItems.map(item => (
+                <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
+                  {item.type === 'image' ? (
+                    <img 
+                      src={item.src} 
+                      alt={item.alt} 
+                      width={item.width} 
+                      height={item.height} 
+                      className="w-full h-auto cursor-pointer" 
+                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                      onClick={() => setLightboxImage({ src: item.src, alt: item.alt })}
+                    />
+                  ) : item.platform === 'vimeo' ? (
+                    <div className="w-full flex flex-col items-center">
+                      <iframe 
+                        src={`https://player.vimeo.com/video/${item.videoId}`} 
+                        width="100%" 
+                        height="320" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowFullScreen 
+                        title={item.alt} 
+                        style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
+                      ></iframe>
+                      {item.caption && <span className="text-p pt-2 font-light text-gray-800 text-center w-full" style={{ marginTop: '-40px' }}>{item.caption}</span>}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+        </div>
+        <div className="bg-grey-400 three-d-section">
+          <div className="flex justify-center pt-7">
+            <h4 className="text-white underline">Animation</h4>
+          </div>
+          <div className="flex justify-center py-8">
+            <div className="bg-white rounded-xl max-w-3xl w-full px-8 py-10 border border-grey-900">
+              <h2 className="text-h5 font-regular text-center mb-6">Parkour Animation</h2>
+              <p className="text-p font-light text-gray-800 mb-4">
+                The goal of this exercise was to learn the fundamentals of body mechanics and to practice switching between IK and FK.
+              </p>
+              <p className="font-semibold">Learnings</p>
+              <ul className="list-disc pl-6 text-p font-light text-gray-800">
+                <li>
+                  The fundamentals of the bouncing ball exercise and principle of squash and stretch are important to creating realistic motion. These principles create buoyancy and keep the character's movement from appearing floaty and weightless.
+                </li>
+                <li>
+                  Rushing into Maya will hurt the quality of your animation. Be sure to carefully plan out your IK and FK switches.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col xs:flex-row sm:flex-col md:flex-row justify-center items-center gap-8 py-8">
+            {animationItems.map(item => (
+              <div key={item.id} className="flex flex-col items-center w-full xs:w-auto" style={{ maxWidth: 400 }}>
+                <div className="w-full flex flex-col items-center">
+                  {item.type === 'image' ? (
+                    <img 
+                      src={item.src} 
+                      alt={item.alt} 
+                      width={item.width} 
+                      height={item.height} 
+                      className="w-full h-auto cursor-pointer" 
+                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                      onClick={() => setLightboxImage({ src: item.src, alt: item.alt })}
+                    />
+                  ) : item.platform === 'mp4' ? (
+                    <video 
+                      src={item.src} 
+                      controls 
+                      poster={item.poster} 
+                      muted
+                      className="w-full h-auto" 
+                      style={{ maxWidth: '100%', maxHeight: 320, objectFit: 'contain', background: '#f8fafc', border: 'none', boxShadow: 'none' }} 
+                    />
+                  ) : item.platform === 'vimeo' ? (
+                    <div className="w-full flex flex-col items-center">
+                      <iframe 
+                        src={`https://player.vimeo.com/video/${item.videoId}`} 
+                        width="100%" 
+                        height="320" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowFullScreen 
+                        title={item.alt} 
+                        style={{ border: 'none', boxShadow: 'none', maxWidth: '100%', minWidth: 0 }}
+                      ></iframe>
+                    </div>
+                  ) : null}
+                </div>
+                {item.caption && <span className="text-p pt-2 font-light text-white text-center w-full">{item.caption}</span>}
+              </div>
+            ))}
           </div>
         </div>
         <div className="py-8 text-center bg-tag-unselected">
