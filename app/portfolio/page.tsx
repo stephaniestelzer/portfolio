@@ -23,7 +23,7 @@ interface Project {
 
 // Query to get all projects
 const projectsQuery = `
-  *[_type == "project"] | order(date desc) {
+  *[_type == "project"] | order(order asc) {
     _id,
     title,
     slug,
@@ -53,4 +53,4 @@ export default async function ProjectsPage() {
       </div>
     </>
   );
-}; 
+};
